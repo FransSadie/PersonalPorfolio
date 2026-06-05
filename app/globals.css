@@ -1,0 +1,151 @@
+@import "tailwindcss";
+
+:root {
+  --background: #060816;
+  --background-elevated: rgba(12, 18, 36, 0.86);
+  --background-panel: rgba(10, 16, 30, 0.78);
+  --surface: rgba(18, 26, 48, 0.78);
+  --surface-strong: rgba(22, 31, 56, 0.92);
+  --text: #e6f7ff;
+  --text-muted: #90a8bc;
+  --line: rgba(92, 228, 255, 0.18);
+  --line-strong: rgba(92, 228, 255, 0.4);
+  --cyan: #67e8f9;
+  --cyan-strong: #22d3ee;
+  --magenta: #f472b6;
+  --violet: #a855f7;
+  --success: #34d399;
+  --warning: #fbbf24;
+  --danger: #fb7185;
+  --shadow-glow: 0 0 0 1px rgba(103, 232, 249, 0.12),
+    0 22px 50px rgba(2, 8, 24, 0.55);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-background-elevated: var(--background-elevated);
+  --color-background-panel: var(--background-panel);
+  --color-surface: var(--surface);
+  --color-surface-strong: var(--surface-strong);
+  --color-foreground: var(--text);
+  --color-muted: var(--text-muted);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-cyan: var(--cyan);
+  --color-cyan-strong: var(--cyan-strong);
+  --color-magenta: var(--magenta);
+  --color-violet: var(--violet);
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-danger: var(--danger);
+  --font-sans: var(--font-space-grotesk);
+  --font-mono: var(--font-ibm-plex-mono);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at top left, rgba(34, 211, 238, 0.16), transparent 28%),
+    radial-gradient(circle at top right, rgba(244, 114, 182, 0.12), transparent 24%),
+    linear-gradient(180deg, #050816 0%, #060816 55%, #040611 100%);
+  color: var(--text);
+  font-family: var(--font-space-grotesk), sans-serif;
+}
+
+a,
+button {
+  transition:
+    border-color 180ms ease,
+    color 180ms ease,
+    background-color 180ms ease,
+    box-shadow 180ms ease,
+    transform 180ms ease;
+}
+
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--magenta);
+  outline-offset: 3px;
+}
+
+::selection {
+  background: rgba(244, 114, 182, 0.3);
+  color: white;
+}
+
+.panel {
+  background: linear-gradient(
+    180deg,
+    rgba(15, 23, 42, 0.86) 0%,
+    rgba(8, 14, 28, 0.9) 100%
+  );
+  border: 1px solid rgba(103, 232, 249, 0.14);
+  box-shadow: var(--shadow-glow);
+  backdrop-filter: blur(18px);
+}
+
+.panel::before {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(
+    135deg,
+    rgba(103, 232, 249, 0.09),
+    transparent 30%,
+    transparent 70%,
+    rgba(168, 85, 247, 0.08)
+  );
+  content: "";
+  pointer-events: none;
+}
+
+.eyebrow {
+  font-family: var(--font-ibm-plex-mono), monospace;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.grid-overlay {
+  background-image:
+    linear-gradient(rgba(103, 232, 249, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(103, 232, 249, 0.08) 1px, transparent 1px);
+  background-size: 54px 54px;
+}
+
+.scanlines {
+  background-image: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.04) 0,
+    rgba(255, 255, 255, 0) 45%,
+    rgba(255, 255, 255, 0.03) 100%
+  );
+  background-size: 100% 6px;
+}
+
+.text-gradient {
+  background: linear-gradient(90deg, #ecfeff 0%, #67e8f9 48%, #f472b6 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.content-copy p {
+  color: var(--text-muted);
+  line-height: 1.8;
+}
+
+.content-copy a {
+  color: var(--cyan);
+}
+
+.content-copy strong {
+  color: var(--text);
+}
