@@ -1,6 +1,6 @@
 ---
 title: "Engineering notes"
-summary: "A placeholder collection for implementation patterns, product observations, and systems thinking."
+summary: "Patterns emerging from my work on local-first apps, explainable AI flows, and data-heavy research tools."
 date: "2026-05-22"
 tags:
   - engineering
@@ -8,12 +8,11 @@ tags:
   - notes
 ---
 
-This section is intentionally lightweight.
+My recent projects keep returning to the same engineering themes:
 
-I want a place to capture:
+- keep important user data local when the product can work without a server
+- make automated decisions inspectable instead of hiding them behind a score
+- validate AI output before it reaches the product or the database
+- design dense technical interfaces around the decision a person needs to make
 
-- implementation patterns worth reusing
-- product decisions worth revisiting
-- small technical observations that do not need a full article
-
-Over time this should become a working archive rather than a polished publication feed.
+Halo uses readable rules to explain scam risk. PSYCHED validates structured local-model output and adds safety gates before generating coaching. Market Lens turns raw price features into rankings, scans, and diagnostics for a human researcher. Different products, but the same principle: complex systems should expose enough context for people to trust their next action.

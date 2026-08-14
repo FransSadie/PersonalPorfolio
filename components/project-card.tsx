@@ -5,7 +5,7 @@ import type { Project } from "@/types/content";
 export function ProjectCard({ project }: { project: Project }) {
   return (
     <article className="panel group relative flex h-full flex-col overflow-hidden rounded-[28px] p-6">
-      <div className="absolute right-0 top-0 h-24 w-24 bg-gradient-to-bl from-magenta/12 to-transparent blur-2xl transition-opacity duration-300 group-hover:opacity-100" />
+      <div className="project-glow absolute right-0 top-0 h-28 w-28" />
       <div className="flex items-start justify-between gap-4">
         <div>
           <p className="eyebrow text-[10px] text-cyan">/{project.slug}</p>

@@ -17,13 +17,13 @@ const ibmPlexMono = IBM_Plex_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://frans-portfolio.example"),
+  metadataBase: new URL("https://personalwebsite-psi-sepia.vercel.app"),
   title: {
-    default: "Frans | Software Engineer",
-    template: "%s | Frans",
+    default: "Frans Sadie | Software Engineer",
+    template: "%s | Frans Sadie",
   },
   description:
-    "A cyberpunk-inspired portfolio for Frans, showcasing software projects, notes, interests, and current explorations.",
+    "Frans Sadie's software engineering portfolio, featuring accessible products, market research tools, local AI experiments, and technical notes.",
 };
 
 export default function RootLayout({

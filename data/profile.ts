@@ -3,25 +3,25 @@ import type { SocialLink } from "@/types/content";
 export const socialLinks: SocialLink[] = [
   {
     label: "GitHub",
-    value: "@frans",
-    href: "https://github.com/frans",
+    value: "@FransSadie",
+    href: "https://github.com/FransSadie",
   },
   {
     label: "LinkedIn",
     value: "Frans Sadie",
-    href: "https://www.linkedin.com/in/frans",
+    href: "https://www.linkedin.com/in/frans-sadie-968318428/",
   },
   {
     label: "Email",
-    value: "frans@example.com",
-    href: "mailto:frans@example.com",
+    value: "sadiefransjr1@hotmail.com",
+    href: "mailto:sadiefransjr1@hotmail.com",
   },
 ];
 
 export const currentSignals = [
-  "Designing calmer interfaces for technical products",
-  "Exploring retrieval systems and developer workflows",
-  "Writing notes that connect software work to broader creative interests",
+  "Building accessible, local-first safety tools for older adults",
+  "Turning market data into practical research and model workflows",
+  "Exploring private local AI for structured coaching and reflection",
 ];
 
 export const engineeringValues = [
@@ -31,7 +31,7 @@ export const engineeringValues = [
 ];
 
 export const learningFocus = [
-  "Information-dense UI without cognitive overload",
-  "Static-first content systems that still feel alive",
-  "How product writing changes the usability of developer tools",
+  "Accessible interfaces for high-stakes decisions",
+  "Reliable structured output and safety gates for local AI",
+  "Research tooling that explains signals instead of hiding them",
 ];

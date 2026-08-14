@@ -7,13 +7,13 @@ export function Hero() {
       <div>
         <p className="eyebrow text-xs text-cyan">00 / Open Workspace</p>
         <h1 className="mt-5 max-w-4xl text-5xl font-semibold tracking-tight text-foreground sm:text-6xl lg:text-7xl">
-          <span className="text-gradient">Frans</span>
+          <span className="text-gradient">Frans Sadie</span>
           <br />
           Software Engineer
         </h1>
         <p className="mt-6 max-w-2xl text-lg leading-8 text-muted sm:text-xl">
-          I build thoughtful software, explore technical ideas, and document
-          the projects and interests that shape my work.
+          I build practical software across accessible products, market
+          research tools, local AI, and developer-focused workflows.
         </p>
         <div className="mt-8 flex flex-wrap gap-3">
           <Link

@@ -22,7 +22,7 @@ export default function AboutPage() {
         <CyberPanel label="Intro">
           <div className="content-copy space-y-4">
             <p>
-              I am Frans, a software engineer focused on building thoughtful
+              I am Frans Sadie, a software engineer focused on building thoughtful
               digital products. I enjoy technical systems, but I care just as
               much about the interface layer that helps people understand and
               trust those systems.
