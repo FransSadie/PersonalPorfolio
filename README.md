@@ -1,6 +1,6 @@
 # Frans Portfolio
 
-A static-first personal portfolio built with Next.js, TypeScript, Tailwind CSS, and MDX. The site is designed as a polished cyberpunk-inspired workspace rather than a generic developer template.
+A static-first personal portfolio built with Next.js, TypeScript, Tailwind CSS, and MDX. The site is framed as a warm retro-futurist evening: part workshop, part field archive, and part old computer interface.
 
 ## Run locally
 
@@ -17,6 +17,7 @@ Open `http://localhost:3000`.
 - Passions: `data/passions.ts`
 - Profile and contact details: `data/profile.ts`
 - Notes: `content/notes/*.mdx`
+- Tools: `data/profile.ts`
 
 ## Structure
 

@@ -1,20 +1,11 @@
 import type { Passion } from "@/types/content";
 
-export function PassionCard({ passion }: { passion: Passion }) {
+export function PassionCard({ passion, index = 0 }: { passion: Passion; index?: number }) {
   return (
-    <article className="panel relative rounded-[28px] p-6">
-      <p className="eyebrow text-[10px] text-cyan">{passion.category}</p>
-      <h3 className="mt-3 text-2xl font-semibold text-foreground">
-        {passion.title}
-      </h3>
-      <p className="mt-4 text-sm leading-7 text-muted sm:text-base">
-        {passion.description}
-      </p>
-      {passion.metadata ? (
-        <p className="mt-5 border-t border-white/8 pt-4 font-mono text-xs leading-6 text-magenta">
-          {passion.metadata}
-        </p>
-      ) : null}
+    <article className="passion-note">
+      <p className="meta text-[#8a3c44]">{String(index + 1).padStart(2, "0")} / {passion.category}</p>
+      <h3 className="display-font mt-3 text-3xl">{passion.title}</h3>
+      <p className="mt-3 text-sm leading-6 text-[#554d43]">{passion.description}</p>
     </article>
   );
 }

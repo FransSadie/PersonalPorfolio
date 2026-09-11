@@ -2,60 +2,20 @@ import Link from "next/link";
 import { StatusBadge } from "@/components/status-badge";
 import type { Project } from "@/types/content";
 
-export function ProjectCard({ project }: { project: Project }) {
+const formats = ["VHS", "DATA TAPE", "CARTRIDGE", "FLOPPY", "CASSETTE", "SOFTWARE BOX"];
+
+export function ProjectCard({ project, index = 0 }: { project: Project; index?: number }) {
   return (
-    <article className="panel group relative flex h-full flex-col overflow-hidden rounded-[28px] p-6">
-      <div className="project-glow absolute right-0 top-0 h-28 w-28" />
-      <div className="flex items-start justify-between gap-4">
-        <div>
-          <p className="eyebrow text-[10px] text-cyan">/{project.slug}</p>
-          <h3 className="mt-3 text-2xl font-semibold text-foreground">
-            {project.name}
-          </h3>
-        </div>
-        <StatusBadge status={project.status} />
+    <article className="media-object">
+      <div className="media-spine"><span className="meta text-[#70b8ae]">FS-{String(index + 1).padStart(2, "0")}</span><span className="meta text-[#77727a]">{formats[index % formats.length]}</span></div>
+      <div className="media-label">
+        <div className="flex items-start justify-between gap-3"><p className="meta text-[#8a3c44]">{project.category}</p><StatusBadge status={project.status} /></div>
+        <h3 className="display-font mt-5 text-4xl leading-none">{project.name}</h3>
+        <p className="mt-4 text-sm leading-6 text-[#514a42]">{project.description}</p>
+        <p className="meta mt-6 text-[#75685c]">{project.year} · {project.stack.slice(0, 3).join(" / ")}</p>
       </div>
-
-      <p className="mt-4 text-sm leading-7 text-muted sm:text-base">
-        {project.description}
-      </p>
-
-      <div className="mt-6 flex flex-wrap gap-2">
-        {project.stack.map((item) => (
-          <span
-            key={item}
-            className="rounded-full border border-cyan/15 bg-cyan/8 px-3 py-1 font-mono text-[11px] uppercase tracking-[0.18em] text-cyan"
-          >
-            {item}
-          </span>
-        ))}
-      </div>
-
-      <div className="mt-6 rounded-2xl border border-white/8 bg-white/5 p-4">
-        <p className="eyebrow text-[10px] text-magenta">Why it matters</p>
-        <p className="mt-2 text-sm leading-7 text-muted">{project.insight}</p>
-      </div>
-
-      <div className="mt-6 flex flex-wrap gap-3 pt-2">
-        <Link
-          href={project.githubUrl}
-          target="_blank"
-          rel="noreferrer"
-          className="rounded-full border border-cyan/20 px-4 py-2 text-sm text-foreground hover:border-cyan/45 hover:bg-cyan/8"
-        >
-          GitHub
-        </Link>
-        {project.liveUrl ? (
-          <Link
-            href={project.liveUrl}
-            target="_blank"
-            rel="noreferrer"
-            className="rounded-full border border-magenta/25 px-4 py-2 text-sm text-foreground hover:border-magenta/45 hover:bg-magenta/8"
-          >
-            Live demo
-          </Link>
-        ) : null}
-      </div>
+      <div className="media-links"><Link href={`/projects/${project.slug}`} className="text-link">Open file →</Link><Link href={project.githubUrl} target="_blank" rel="noreferrer" className="text-link">GitHub ↗</Link>{project.liveUrl ? <Link href={project.liveUrl} target="_blank" rel="noreferrer" className="text-link">Live ↗</Link> : null}</div>
+      <div className="media-notch" aria-hidden="true" />
     </article>
   );
 }

@@ -1,36 +1,20 @@
+import Image from "next/image";
 import Link from "next/link";
-import { TerminalBlock } from "@/components/terminal-block";
+import cinematicHorizon from "@/design-reference/cinematic-horizon.png";
 
 export function Hero() {
   return (
-    <section className="grid items-center gap-10 pb-14 pt-6 lg:grid-cols-[1.15fr_0.85fr] lg:gap-14 lg:pb-18 lg:pt-10">
-      <div>
-        <p className="eyebrow text-xs text-cyan">00 / Open Workspace</p>
-        <h1 className="mt-5 max-w-4xl text-5xl font-semibold tracking-tight text-foreground sm:text-6xl lg:text-7xl">
-          <span className="text-gradient">Frans Sadie</span>
-          <br />
-          Software Engineer
-        </h1>
-        <p className="mt-6 max-w-2xl text-lg leading-8 text-muted sm:text-xl">
-          I build practical software across accessible products, market
-          research tools, local AI, and developer-focused workflows.
-        </p>
-        <div className="mt-8 flex flex-wrap gap-3">
-          <Link
-            href="/projects"
-            className="rounded-full border border-cyan/25 bg-cyan/10 px-6 py-3 text-sm text-foreground hover:border-cyan/45 hover:bg-cyan/16"
-          >
-            View projects
-          </Link>
-          <Link
-            href="/notes"
-            className="rounded-full border border-white/10 px-6 py-3 text-sm text-foreground hover:border-magenta/30 hover:bg-magenta/8"
-          >
-            Read notes
-          </Link>
-        </div>
+    <section id="home" className="hero-cinema anchor-section">
+      <Image src={cinematicHorizon} alt="A retro-futurist coastal city beneath a star-filled sunset sky" fill priority sizes="100vw" className="hero-cinema-image object-cover" />
+      <div className="hero-frame" aria-hidden="true" />
+      <div className="site-width hero-copy">
+        <div className="flex items-center gap-3"><span className="status-light" aria-hidden="true" /><p className="eyebrow text-[#70b8ae]">Player 01 · Signal online · 198X</p></div>
+        <h1 className="hero-title display-font mt-8">Frans<br /><span className="text-[#e7775f]">Sadie.</span></h1>
+        <p className="mt-7 font-mono text-sm uppercase tracking-[.14em] text-[#70b8ae]">Software Engineer / Builder <span className="terminal-cursor text-[#e8a94f]">_</span></p>
+        <p className="mt-6 max-w-xl text-xl leading-8 text-[#e8dfd0]">I build practical software across accessible products, market research, local AI, and tools for clearer thinking.</p>
+        <div className="mt-9 flex flex-wrap gap-3"><Link href="#projects" className="button-link accent">Enter archive</Link><Link href="https://github.com/FransSadie" target="_blank" rel="noreferrer" className="button-link">GitHub ↗</Link></div>
+        <div className="meta absolute bottom-9 flex gap-8 text-white/55"><span>ZA · 26.2041° S</span><span className="hidden sm:inline">Transmission FS-84</span></div>
       </div>
-      <TerminalBlock />
     </section>
   );
 }

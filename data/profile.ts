@@ -35,3 +35,22 @@ export const learningFocus = [
   "Reliable structured output and safety gates for local AI",
   "Research tooling that explains signals instead of hiding them",
 ];
+
+export const toolGroups = [
+  {
+    label: "Web",
+    tools: ["Next.js", "React", "TypeScript", "Tailwind CSS"],
+  },
+  {
+    label: "Data & AI",
+    tools: ["Python", "FastAPI", "PostgreSQL", "LightGBM", "Ollama"],
+  },
+  {
+    label: "Mobile & Desktop",
+    tools: ["Capacitor", "Tauri", "Rust", "SQLite"],
+  },
+  {
+    label: "Workflow",
+    tools: ["GitHub", "Vercel", "Supabase", "Vitest"],
+  },
+];

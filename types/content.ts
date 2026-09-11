@@ -3,12 +3,17 @@ export type ProjectStatus = "Active" | "Experimental" | "Archived" | "WIP";
 export type Project = {
   slug: string;
   name: string;
+  category: string;
+  role: string;
   description: string;
   stack: string[];
   githubUrl: string;
   liveUrl?: string;
   status: ProjectStatus;
   insight: string;
+  year: string;
+  story: string;
+  lessons: string[];
   featured?: boolean;
 };
 

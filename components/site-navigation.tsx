@@ -1,92 +1,50 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const links = [
-  { href: "/", label: "Home" },
-  { href: "/projects", label: "Projects" },
-  { href: "/about", label: "About" },
-  { href: "/passions", label: "Passions" },
-  { href: "/notes", label: "Notes" },
-  { href: "/contact", label: "Contact" },
+  { id: "home", number: "00", label: "Home" },
+  { id: "about", number: "01", label: "About" },
+  { id: "projects", number: "02", label: "Projects" },
+  { id: "tools", number: "03", label: "Tools" },
+  { id: "outside", number: "04", label: "Outside" },
+  { id: "notes", number: "05", label: "Notes" },
+  { id: "contact", number: "06", label: "Contact" },
 ];
 
-function isCurrentRoute(pathname: string, href: string) {
-  return href === "/" ? pathname === href : pathname.startsWith(href);
-}
-
 export function SiteNavigation() {
-  const pathname = usePathname();
-  const [open, setOpen] = useState(false);
+  const [active, setActive] = useState("home");
+  const menuRef = useRef<HTMLDetailsElement>(null);
+
+  useEffect(() => {
+    const sections = links.map(({ id }) => document.getElementById(id)).filter((section): section is HTMLElement => Boolean(section));
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries.filter((entry) => entry.isIntersecting).sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+        if (visible) setActive(visible.target.id);
+      },
+      { rootMargin: "-20% 0px -60%", threshold: [0, 0.25, 0.5] },
+    );
+    sections.forEach((section) => observer.observe(section));
+    return () => observer.disconnect();
+  }, []);
+
+  function closeMenu() {
+    if (menuRef.current) menuRef.current.open = false;
+  }
 
   return (
     <>
-      <nav
-        aria-label="Primary navigation"
-        className="panel relative hidden items-center gap-2 rounded-full px-2 py-2 md:flex"
-      >
-        {links.map((link) => {
-          const active = isCurrentRoute(pathname, link.href);
-
-          return (
-            <Link
-              key={link.href}
-              href={link.href}
-              aria-current={active ? "page" : undefined}
-              className={`rounded-full px-4 py-2 text-sm ${
-                active
-                  ? "bg-cyan/10 text-foreground shadow-[inset_0_0_0_1px_rgba(103,232,249,0.28)]"
-                  : "text-muted hover:text-foreground"
-              }`}
-            >
-              {link.label}
-            </Link>
-          );
-        })}
+      <nav aria-label="Primary navigation" className="hidden gap-6 text-sm text-[#aaa399] md:flex">
+        {links.map((link) => <Link key={link.id} href={`/#${link.id}`} aria-current={active === link.id ? "location" : undefined} className="nav-link"><span className="mr-1 text-[#6f727b]">{link.number}</span>{link.label}</Link>)}
       </nav>
-
-      <div className="md:hidden">
-        <button
-          type="button"
-          className="panel relative inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm text-foreground"
-          aria-expanded={open}
-          aria-controls="mobile-navigation"
-          onClick={() => setOpen((value) => !value)}
-        >
-          <span className="eyebrow text-[10px] text-cyan">Nav</span>
-          <span>{open ? "Close" : "Menu"}</span>
-        </button>
-        {open ? (
-          <div
-            id="mobile-navigation"
-            className="panel absolute left-5 right-5 top-[4.75rem] rounded-3xl p-4"
-          >
-            <nav aria-label="Mobile navigation" className="flex flex-col gap-2">
-              {links.map((link) => {
-                const active = isCurrentRoute(pathname, link.href);
-
-                return (
-                  <Link
-                    key={link.href}
-                    href={link.href}
-                    aria-current={active ? "page" : undefined}
-                    className={`rounded-2xl border px-4 py-3 text-sm ${
-                      active
-                        ? "border-cyan/40 bg-cyan/10 text-foreground"
-                        : "border-transparent text-muted hover:border-cyan/20 hover:text-foreground"
-                    }`}
-                    onClick={() => setOpen(false)}
-                  >
-                    {link.label}
-                  </Link>
-                );
-              })}
-            </nav>
-          </div>
-        ) : null}
-      </div>
+      <details ref={menuRef} className="relative md:hidden">
+        <summary className="cursor-pointer list-none py-3 text-sm">Menu <span className="ml-1 text-[#df765d]">+</span></summary>
+        <nav aria-label="Mobile navigation" className="absolute right-0 top-12 z-20 w-52 border border-white/15 bg-[#151515] px-5 py-2">
+          {links.map((link) => <Link key={link.id} href={`/#${link.id}`} aria-current={active === link.id ? "location" : undefined} onClick={closeMenu} className="mobile-nav-link block border-t border-white/15 py-3 first:border-0"><span className="meta mr-3 text-[#6f727b]">{link.number}</span>{link.label}</Link>)}
+        </nav>
+      </details>
     </>
   );
 }

@@ -3,25 +3,8 @@ import { ProjectCard } from "@/components/project-card";
 import { SectionHeader } from "@/components/section-header";
 import { projects } from "@/data/projects";
 
-export const metadata: Metadata = {
-  title: "Projects",
-  description: "Project archive and build notes from Frans.",
-};
+export const metadata: Metadata = { title: "Projects", description: "Selected software projects by Frans Sadie." };
 
 export default function ProjectsPage() {
-  return (
-    <div className="space-y-10 py-8">
-      <SectionHeader
-        index="01 / Projects"
-        title="Project archive"
-        eyebrow="Software in context"
-        description="Each project is presented as a product artifact rather than a raw repository list, with status, stack, intent, and the main lesson behind the work."
-      />
-      <div className="grid gap-6 lg:grid-cols-2">
-        {projects.map((project) => (
-          <ProjectCard key={project.slug} project={project} />
-        ))}
-      </div>
-    </div>
-  );
+  return <div className="page-stack"><SectionHeader index="02 / Projects" title="Things I’ve built." description="Products and experiments across accessibility, research, local AI, and personal tools." /><section>{projects.map((project, index) => <ProjectCard key={project.slug} project={project} index={index} />)}</section></div>;
 }
