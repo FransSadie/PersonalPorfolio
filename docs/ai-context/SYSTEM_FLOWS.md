@@ -11,13 +11,14 @@
 
 1. Header links target section IDs on `/`.
 2. Native anchor scrolling moves to About, Projects, Tools, Outside Tech, Notes, or Contact.
-3. A single `IntersectionObserver` updates the active navigation state without continuous scroll handlers.
-4. Mobile navigation uses native `details`/`summary` behavior and closes after selection.
+3. A single `IntersectionObserver` updates the active navigation state and pauses ambient CSS animation in sections outside the viewport, without scroll handlers.
+4. Mobile navigation uses native `details`/`summary` behavior, closes after selection, and supports Escape with focus returned to the summary.
+5. From detail routes, navigation anchors load the homepage at the selected section; the observer attaches to the new document. Route-aware highlighting also supports client-side returns.
 
 ## Project browsing
 
-1. `/projects` maps `data/projects.ts` into project cards.
-2. A card links to `/projects/[slug]`.
+1. The homepage and `/projects` map `data/projects.ts` into the same floppy-disk grid.
+2. A disk or its Read more action links to `/projects/[slug]`; the visible summary and GitHub link stay accessible without opening anything. These links fetch details on selection instead of prefetching on scroll.
 3. The detail route finds the slug in the same in-memory project array or returns 404.
 4. Project paths and metadata are generated from that array at build time.
 

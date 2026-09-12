@@ -7,13 +7,13 @@ export const metadata: Metadata = { title: "About", description: "About Frans Sa
 export default function AboutPage() {
   return (
     <div className="page-stack">
-      <SectionHeader index="01 / About" title="Same curious mind. Bigger questions." description="I care about software that is useful, understandable, and built with respect for the person using it." />
+      <SectionHeader index="01 / About" title="Hello, I’m Frans." description="I’m a software engineer who enjoys making useful products feel clear and easy to use." />
       <section className="section-grid">
         <p className="eyebrow">A little context</p>
         <div className="editorial-copy max-w-3xl">
-          <p>I’m Frans, a software engineer and builder based in South Africa. I work across web, desktop, mobile, data, and local AI—usually wherever a problem needs both technical depth and a clear product point of view.</p>
-          <p>I’m especially interested in tools that reduce ambiguity: safer decisions, clearer research, private reflection, and knowledge that stays portable.</p>
-          <p>Outside software, books, music, training, games, and travel shape how I notice rhythm, systems, and detail.</p>
+          <p>I’m a software engineer based in South Africa. I work across web, desktop, mobile, data, and local AI, depending on what a project needs.</p>
+          <p>I’m most interested in tools that help people make safer decisions, understand complex information, or keep control of their own data.</p>
+          <p>When I’m away from the screen, I spend time reading, listening to music, training, playing games, and travelling.</p>
         </div>
       </section>
       <section className="grid gap-12 border-t border-white/15 pt-8 md:grid-cols-3">

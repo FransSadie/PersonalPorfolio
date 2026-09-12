@@ -2,20 +2,40 @@ import Link from "next/link";
 import { StatusBadge } from "@/components/status-badge";
 import type { Project } from "@/types/content";
 
-const formats = ["VHS", "DATA TAPE", "CARTRIDGE", "FLOPPY", "CASSETTE", "SOFTWARE BOX"];
-
 export function ProjectCard({ project, index = 0 }: { project: Project; index?: number }) {
+  const number = String(index + 1).padStart(2, "0");
+
   return (
-    <article className="media-object">
-      <div className="media-spine"><span className="meta text-[#70b8ae]">FS-{String(index + 1).padStart(2, "0")}</span><span className="meta text-[#77727a]">{formats[index % formats.length]}</span></div>
-      <div className="media-label">
-        <div className="flex items-start justify-between gap-3"><p className="meta text-[#8a3c44]">{project.category}</p><StatusBadge status={project.status} /></div>
-        <h3 className="display-font mt-5 text-4xl leading-none">{project.name}</h3>
-        <p className="mt-4 text-sm leading-6 text-[#514a42]">{project.description}</p>
-        <p className="meta mt-6 text-[#75685c]">{project.year} · {project.stack.slice(0, 3).join(" / ")}</p>
+    <article className="project-entry" aria-labelledby={`project-${project.slug}`}>
+      <Link href={`/projects/${project.slug}`} prefetch={false} className="floppy-disk" aria-label={`Read about ${project.name}`}>
+        <div className="floppy-top" aria-hidden="true">
+          <span className="floppy-brand">FS / SOFTWARE</span>
+          <span className="floppy-shutter"><span>3.5″ · HD</span></span>
+        </div>
+        <div className="floppy-label">
+          <div className="floppy-label-heading">
+            <span className="meta">PROJECT / {number}</span>
+            <span className="floppy-number" aria-hidden="true">{number}</span>
+          </div>
+          <p className="floppy-category">{project.category}</p>
+          <h3 id={`project-${project.slug}`} className="display-font floppy-title">{project.name}</h3>
+          <div className="floppy-label-footer">
+            <ul className="floppy-stack" aria-label="Technologies">
+              {project.stack.map((tool) => <li key={tool}>{tool}</li>)}
+            </ul>
+            <div className="floppy-status"><StatusBadge status={project.status} /><span className="meta">{project.year}</span></div>
+          </div>
+        </div>
+        <span className="floppy-bottom meta" aria-hidden="true">FS-{number} / SOURCE ARCHIVE</span>
+      </Link>
+      <div className="project-caption">
+        <p>{project.description}</p>
+        <div className="project-links">
+          <Link href={`/projects/${project.slug}`} prefetch={false} className="text-link" aria-label={`Read more about ${project.name}`}>Read more <span aria-hidden="true">→</span></Link>
+          <a href={project.githubUrl} target="_blank" rel="noreferrer" className="text-link" aria-label={`${project.name} on GitHub`}>GitHub <span aria-hidden="true">↗</span></a>
+          {project.liveUrl ? <a href={project.liveUrl} target="_blank" rel="noreferrer" className="text-link">View live <span aria-hidden="true">↗</span></a> : null}
+        </div>
       </div>
-      <div className="media-links"><Link href={`/projects/${project.slug}`} className="text-link">Open file →</Link><Link href={project.githubUrl} target="_blank" rel="noreferrer" className="text-link">GitHub ↗</Link>{project.liveUrl ? <Link href={project.liveUrl} target="_blank" rel="noreferrer" className="text-link">Live ↗</Link> : null}</div>
-      <div className="media-notch" aria-hidden="true" />
     </article>
   );
 }

@@ -34,3 +34,15 @@ Dates and original reasoning are unknown unless stated.
 - **Reason:** The September 2026 redesign prioritizes speed, clarity, and a more mature presentation.
 - **Affected areas:** Global styles, layout, navigation, hero, cards, and content routes.
 - **Trade-off:** Less spectacle in exchange for better readability and substantially lower rendering complexity.
+
+## Stable section layout (2026-09-12)
+
+- **Decision:** Replace whole-section `content-visibility` placeholders with normal layout and an explicit shrinkable page-grid column.
+- **Evidence:** The earlier `contain-intrinsic-size: auto 900px` reserved width as well as height. Browser testing measured 526px horizontal overflow at a 390px viewport. Variable section heights also complicated anchor navigation.
+- **Trade-off:** The small static document lays out up front; lazy images, paused off-screen animation, and disabled route prefetching reduce ongoing work without changing target positions.
+
+## CSS floppy disks and bounded motion (2026-09-12)
+
+- **Decision:** Render each project as a CSS floppy-disk link, with its summary and source links underneath. Preserve detail routes.
+- **Reason:** Meet the retro art direction without extra assets, client components, animation libraries, or disclosure state.
+- **Trade-off:** Small hover transforms and shutter opacity changes provide feedback. Ambient movement is limited to the cursor and toolkit LED, gated by the existing section observer.

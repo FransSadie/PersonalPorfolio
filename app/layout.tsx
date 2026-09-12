@@ -19,7 +19,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       <body>
         <div className="min-h-screen">
           <SiteHeader />
-          <main className="site-width">{children}</main>
+          <main id="main-content" className="site-width" tabIndex={-1}>{children}</main>
           <Footer />
         </div>
       </body>

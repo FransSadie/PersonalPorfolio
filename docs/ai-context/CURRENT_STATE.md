@@ -2,7 +2,7 @@
 
 ## Purpose
 
-Frans Sadie's personal portfolio presents projects, engineering interests, tools, passions, notes, and contact links in a minimal editorial interface with restrained retro-futurist details.
+Frans Sadie's personal portfolio presents projects, engineering interests, tools, passions, notes, and contact links through a cinematic hero, floppy-disk projects, paper dossier, and instrument-panel details.
 
 ## Architecture
 
@@ -11,7 +11,10 @@ Frans Sadie's personal portfolio presents projects, engineering interests, tools
 - Content lives in `data/*.ts`; notes live in `content/notes/*.mdx` and are read by `lib/notes.ts`.
 - Static project and note detail paths are generated from repository content.
 - The homepage is the primary one-page experience; header links scroll to About, Projects, Tools, Outside Tech, Notes, and Contact sections.
-- Most presentation is server-rendered. `site-navigation.tsx` is the only Client Component and uses `IntersectionObserver` for the active section indicator.
+- Most presentation is server-rendered. `site-navigation.tsx` is the only Client Component; one `IntersectionObserver` updates the active section and pauses ambient animation outside the viewport.
+- Homepage sections use normal layout with a shrinkable grid column, keeping widths and anchor positions stable. Do not reintroduce size placeholders on entire anchor sections.
+- Project disks are server-rendered links with CSS decoration, visible summaries, and direct GitHub actions. Project/note links on the homepage do not prefetch routes while scrolling.
+- The hero and contact scene share a 54 KB WebP source through `next/image`; only the hero is loaded with priority.
 
 ## Important locations
 
@@ -24,7 +27,7 @@ Frans Sadie's personal portfolio presents projects, engineering interests, tools
 
 ## Deployment and configuration
 
-The checkout has a local Vercel link to project `personalwebsite` and Git remote `FransSadie/PersonalPorfolio`. No environment variables, CI workflow, `vercel.json`, application tests, or custom Next.js configuration are present. Vercel's production branch and automatic Git deployment settings are not verifiable from repository files.
+The checkout has a local Vercel link to project `personalwebsite` and Git remote `FransSadie/PersonalPorfolio`. The application requires no environment variables or external services. There is no repository CI, `vercel.json`, or committed automated test suite. `next.config.ts` uses defaults. Vercel's production branch and automatic Git deployment settings are not verifiable from repository files.
 
 ## Constraints and risks
 
@@ -35,7 +38,8 @@ The checkout has a local Vercel link to project `personalwebsite` and Git remote
 - External GitHub/contact URLs and manually maintained project details can become stale.
 - There is lint/build verification but no automated test suite or repository CI.
 - Responsive behavior relies on CSS breakpoints and native mobile navigation markup; test keyboard, anchor scrolling, and active-section behavior when changing them.
-- Visual motion is CSS-only except for section detection. Preserve reduced-motion overrides and avoid adding frame loops or scroll handlers.
+- Visual motion is limited to a visible hero cursor, desktop toolkit LED, and short pointer-hover transforms. Preserve reduced-motion overrides and avoid full-screen continuous animation, fixed filter overlays, frame loops, or scroll handlers.
+- Read `docs/PERFORMANCE_REVIEW.md` for the September 2026 browser measurements and verification scope.
 
 ## Before modifying
 

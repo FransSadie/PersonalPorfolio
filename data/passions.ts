@@ -3,50 +3,50 @@ import type { Passion } from "@/types/content";
 export const passions: Passion[] = [
   {
     slug: "books",
-    title: "Books and marginalia",
+    title: "Books and notes",
     category: "Reading",
     description:
-      "I keep returning to technical biographies, design essays, and philosophy that sharpens how I think about systems.",
-    metadata: "Currently collecting fragments on craft, memory, and decision-making.",
+      "I enjoy technical biographies, design essays, and philosophy. They often give me a different way to look at the systems I build.",
+    metadata: "Lately I have been reading about craft, memory, and decision-making.",
   },
   {
     slug: "music",
-    title: "Music with texture",
+    title: "Music",
     category: "Listening",
     description:
-      "Electronic, ambient, and cinematic records shape a lot of the atmosphere I want my software to carry.",
-    metadata: "Good interfaces should feel composed, not merely assembled.",
+      "I listen to a lot of electronic, ambient, and cinematic music. It is usually playing while I work or think through a problem.",
+    metadata: "A good interface has rhythm, much like a good record.",
   },
   {
     slug: "fitness",
     title: "Training and routine",
     category: "Fitness",
     description:
-      "Strength work and consistent routines keep the rest of my thinking disciplined, especially during long building cycles.",
-    metadata: "Progress compounds when the system is sustainable.",
+      "Strength training and a steady routine help me stay focused, especially when I am deep into a long project.",
+    metadata: "Consistency matters more to me than short bursts of progress.",
   },
   {
     slug: "travel",
-    title: "Travel as contrast",
+    title: "Travel",
     category: "Travel",
     description:
-      "New places reset my attention. I notice materials, signage, pacing, and the small interface decisions people live inside.",
-    metadata: "Cities are some of the most interesting design systems.",
+      "Visiting new places helps me pay attention again. I tend to notice the signs, materials, pace, and small choices that shape a city.",
+    metadata: "Cities have a lot to teach us about design.",
   },
   {
     slug: "games",
-    title: "Games and worldbuilding",
+    title: "Games",
     category: "Games",
     description:
-      "I like systems-heavy games that reveal their logic slowly and reward careful observation over novelty for its own sake.",
-    metadata: "A good game loop teaches interaction design in compressed form.",
+      "I like games with systems that take time to understand and reward careful attention.",
+    metadata: "Games are a good reminder that learning can be part of the experience.",
   },
   {
     slug: "design",
-    title: "Interface craft",
+    title: "Interface design",
     category: "Design",
     description:
-      "I pay close attention to typography, hierarchy, rhythm, and the emotional tone that a product establishes before any feature work.",
-    metadata: "Visual clarity is part of engineering quality.",
+      "I pay attention to typography, spacing, hierarchy, and the overall tone of a product, not only whether the features work.",
+    metadata: "Clear visual design is part of building good software.",
   },
 ];

@@ -4,4 +4,4 @@ import { SocialLinks } from "@/components/social-links";
 import { socialLinks } from "@/data/profile";
 
 export const metadata: Metadata = { title: "Contact", description: "Contact Frans Sadie." };
-export default function ContactPage() { return <div className="page-stack"><SectionHeader index="05 / Contact" title="Let’s talk." description="If you want to discuss software, products, or something worth building, use whichever channel works best." /><section className="section-grid"><p className="eyebrow">The line is open</p><SocialLinks links={socialLinks} /></section></div>; }
+export default function ContactPage() { return <div className="page-stack"><SectionHeader index="06 / Contact" title="Get in touch." description="If you have a project in mind or want to talk about software, I’d be happy to hear from you." /><section className="section-grid"><p className="eyebrow">Contact details</p><SocialLinks links={socialLinks} /></section></div>; }

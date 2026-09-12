@@ -1,6 +1,6 @@
 ---
 title: "Engineering notes"
-summary: "Patterns emerging from my work on local-first apps, explainable AI flows, and data-heavy research tools."
+summary: "A few lessons from building local apps, AI features, and data-heavy research tools."
 date: "2026-05-22"
 tags:
   - engineering
@@ -8,11 +8,11 @@ tags:
   - notes
 ---
 
-My recent projects keep returning to the same engineering themes:
+The same themes have come up across several of my recent projects:
 
 - keep important user data local when the product can work without a server
-- make automated decisions inspectable instead of hiding them behind a score
+- show how an automated decision was reached instead of hiding it behind a score
 - validate AI output before it reaches the product or the database
-- design dense technical interfaces around the decision a person needs to make
+- organise dense interfaces around the decision someone needs to make
 
-Halo uses readable rules to explain scam risk. PSYCHED validates structured local-model output and adds safety gates before generating coaching. Market Lens turns raw price features into rankings, scans, and diagnostics for a human researcher. Different products, but the same principle: complex systems should expose enough context for people to trust their next action.
+Halo uses clear rules to explain scam risk. PSYCHED checks local-model output and applies safety rules before it saves coaching feedback. Market Lens turns price data into rankings, scans, and diagnostics for hands-on research. They are different products, but each one needs to show enough context for a person to understand what to do next.

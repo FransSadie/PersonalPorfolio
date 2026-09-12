@@ -16,7 +16,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
   return (
     <article className="page-stack">
       <header className="section-rule">
-        <Link href="/projects" className="text-link text-sm">← All projects</Link>
+        <Link href="/projects" prefetch={false} className="text-link text-sm">← All projects</Link>
         <div className="mt-10 flex flex-wrap items-center gap-3"><p className="eyebrow">{project.category} · {project.year}</p><StatusBadge status={project.status} /></div>
         <h1 className="display-font section-title mt-5">{project.name}</h1>
         <p className="mt-7 max-w-3xl text-xl leading-8 text-[#aaa399]">{project.description}</p>
