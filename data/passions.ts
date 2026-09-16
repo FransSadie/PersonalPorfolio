@@ -1,52 +1,15 @@
 import type { Passion } from "@/types/content";
+import music from "@/public/images/music.webp";
+import games from "@/public/images/games.webp";
+import fitness from "@/public/images/fitness.webp";
+import reading from "@/public/images/reading.webp";
+import climbing from "@/public/images/climbing.webp";
 
-export const passions: Passion[] = [
-  {
-    slug: "books",
-    title: "Books and marginalia",
-    category: "Reading",
-    description:
-      "I keep returning to technical biographies, design essays, and philosophy that sharpens how I think about systems.",
-    metadata: "Currently collecting fragments on craft, memory, and decision-making.",
-  },
-  {
-    slug: "music",
-    title: "Music with texture",
-    category: "Listening",
-    description:
-      "Electronic, ambient, and cinematic records shape a lot of the atmosphere I want my software to carry.",
-    metadata: "Good interfaces should feel composed, not merely assembled.",
-  },
-  {
-    slug: "fitness",
-    title: "Training and routine",
-    category: "Fitness",
-    description:
-      "Strength work and consistent routines keep the rest of my thinking disciplined, especially during long building cycles.",
-    metadata: "Progress compounds when the system is sustainable.",
-  },
-  {
-    slug: "travel",
-    title: "Travel as contrast",
-    category: "Travel",
-    description:
-      "New places reset my attention. I notice materials, signage, pacing, and the small interface decisions people live inside.",
-    metadata: "Cities are some of the most interesting design systems.",
-  },
-  {
-    slug: "games",
-    title: "Games and worldbuilding",
-    category: "Games",
-    description:
-      "I like systems-heavy games that reveal their logic slowly and reward careful observation over novelty for its own sake.",
-    metadata: "A good game loop teaches interaction design in compressed form.",
-  },
-  {
-    slug: "design",
-    title: "Interface craft",
-    category: "Design",
-    description:
-      "I pay close attention to typography, hierarchy, rhythm, and the emotional tone that a product establishes before any feature work.",
-    metadata: "Visual clarity is part of engineering quality.",
-  },
+// Existing interests, illustrated with generated subject photographs.
+export const passions: readonly Passion[] = [
+  { slug: "climbing", title: "Climbing", description: "A big part of my life outside software: movement, technique, and working through a route one move at a time.", image: climbing, imageAlt: "Climbing shoes and a chalk bag resting on sandstone" },
+  { slug: "music", title: "Music", description: "Electronic, ambient, and cinematic music. I’m drawn to layered sounds and the atmosphere a good record creates.", image: music, imageAlt: "Vinyl record on a vintage turntable" },
+  { slug: "games", title: "Games", description: "Strategy and systems-driven games that reward observation, planning, and understanding how things work.", image: games, imageAlt: "Game controller beside a CRT screen" },
+  { slug: "fitness", title: "Fitness", description: "Strength training and consistent routines help me stay focused and balance time spent at a desk.", image: fitness, imageAlt: "Cast-iron dumbbells in warm sunlight" },
+  { slug: "books", title: "Reading", description: "Technical biographies, design essays, and philosophy. Books that offer a different way to think about systems and people.", image: reading, imageAlt: "Open book beside a reading lamp" },
 ];

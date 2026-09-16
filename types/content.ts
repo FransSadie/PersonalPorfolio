@@ -1,28 +1,25 @@
-export type ProjectStatus = "Active" | "Experimental" | "Archived" | "WIP";
+import type { SkillAccent } from "@/data/skills";
+import type { StaticImageData } from "next/image";
 
 export type Project = {
   slug: string;
   name: string;
   category: string;
-  role: string;
   description: string;
-  stack: string[];
+  detail: string;
+  stack: readonly string[];
   githubUrl: string;
   liveUrl?: string;
-  status: ProjectStatus;
-  insight: string;
-  year: string;
-  story: string;
-  lessons: string[];
-  featured?: boolean;
+  status?: string;
+  accent: SkillAccent;
 };
 
 export type Passion = {
   slug: string;
   title: string;
-  category: string;
   description: string;
-  metadata?: string;
+  image: StaticImageData;
+  imageAlt: string;
 };
 
 export type SocialLink = {

@@ -1,135 +1,41 @@
 import type { Project } from "@/types/content";
 
-export const projects: Project[] = [
+// Public repositories reviewed on 2026-09-12. Status describes the documented
+// implementation, not an inference about ongoing maintenance or production use.
+export const projects: readonly Project[] = [
   {
-    slug: "halo",
-    name: "Halo",
-    category: "Accessible safety",
-    role: "Product design & full-stack engineering",
-    description:
-      "A mobile-first scam-safety MVP that helps older adults pause, assess suspicious messages, and contact trusted people before acting.",
-    stack: ["React", "TypeScript", "Capacitor", "Supabase"],
-    githubUrl: "https://github.com/FransSadie/Halo",
-    status: "Active",
-    year: "2026",
-    story:
-      "Halo began as a practical question: how can a safety tool help someone slow down without making them feel powerless? The result is a calm, mobile-first flow built around understandable checks and trusted contacts.",
-    lessons: [
-      "High-stakes interfaces need calm language and obvious next actions.",
-      "Rules-first evaluation makes risk decisions easier to explain.",
-      "Local-first defaults keep an MVP useful before cloud setup.",
-    ],
-    insight:
-      "The product combines transparent, rules-first risk checks with accessible controls, local-first storage, OCR-assisted review, and an upgrade path to native safety features.",
-    featured: true,
-  },
-  {
-    slug: "market-lens-research",
-    name: "Market Lens Research",
-    category: "Market research",
-    role: "Product design & full-stack engineering",
-    description:
-      "A market-research desk for exploring price action, sector leadership, relative strength, and trade setups across equities and ETFs.",
+    slug: "market-lens-research", name: "Market Lens Research", category: "Data & full-stack", status: "Research tool", accent: "amber",
+    description: "A full-stack research dashboard that brings market data ingestion, analytics, rankings, and scans into one workflow. Built to explore sector leadership, relative strength, and potential setups across equities and ETFs.",
     stack: ["Python", "FastAPI", "React", "SQLAlchemy"],
     githubUrl: "https://github.com/FransSadie/market-lens-research",
-    status: "Active",
-    year: "2026",
-    story:
-      "Market Lens Research turns a broad stream of market data into a focused daily research desk. It is designed for exploration: what is leading, what is weakening, and which setups deserve a closer look.",
-    lessons: [
-      "Research tools should support judgment rather than imitate certainty.",
-      "Rankings and summaries make dense data easier to navigate.",
-      "A clear product question keeps analytics work from becoming noise.",
-    ],
-    insight:
-      "It turns multi-horizon returns, volatility, trend, and benchmark-relative data into rankings and scans that support a human research workflow.",
-    featured: true,
+    detail: "Price ingestion feeds analytics snapshots, rankings, and scans. The current repository focuses on supporting human research, with its old prediction stack removed.",
   },
   {
-    slug: "psyched",
-    name: "PSYCHED",
-    category: "Private local AI",
-    role: "Product design & full-stack engineering",
-    description:
-      "A private journaling and mental-performance coach that turns daily entries and self-ratings into structured analysis and practical feedback.",
+    slug: "market-lens-price", name: "Market Lens / Price", category: "Data & machine learning", status: "Experiment", accent: "teal",
+    description: "A price-based modeling pipeline covering feature engineering, LightGBM experiments, and benchmark comparisons. An operator dashboard tracks training runs, feature importance, and model history.",
+    stack: ["Python", "LightGBM", "scikit-learn", "FastAPI"],
+    githubUrl: "https://github.com/FransSadie/Market-lens-price",
+    detail: "Records model history, candidate trials, threshold sweeps, and feature importance. A logistic-regression benchmark provides a reference for each training run.",
+  },
+  {
+    slug: "psyched", name: "PSYCHED", category: "Full-stack & AI integration", status: "Prototype", accent: "magenta",
+    description: "A journaling application that connects locally running language models with validated responses and PostgreSQL storage. Daily reflections become structured feedback, with safety rules applied before responses are saved.",
     stack: ["Next.js", "PostgreSQL", "Ollama", "Zod"],
     githubUrl: "https://github.com/FransSadie/psyched",
-    status: "Experimental",
-    year: "2026",
-    story:
-      "PSYCHED explores whether a private local model can turn daily reflection into useful, structured coaching without sending personal writing to a hosted AI service.",
-    lessons: [
-      "Structured model output must be validated before it reaches users.",
-      "Safety rules should be independent from the requested coaching tone.",
-      "Privacy can be part of the product experience, not only infrastructure.",
-    ],
-    insight:
-      "Its multi-stage local-AI pipeline validates structured output, retries malformed responses, and applies safety rules before any coaching response is saved.",
-    featured: true,
+    detail: "The pipeline validates model output and applies safety rules before saving a response. Journal history and settings sit alongside the local AI workflow.",
   },
   {
-    slug: "trace",
-    name: "Trace",
-    category: "Knowledge tools",
-    role: "Desktop product engineering",
-    description:
-      "A local-first desktop knowledge base for engineers, with Markdown as the canonical note format and SQLite for metadata and search.",
+    slug: "halo", name: "Halo", category: "Web & mobile", status: "MVP", accent: "coral",
+    description: "A mobile-first scam-safety prototype that helps older adults check suspicious messages and contact someone they trust. The interface pairs accessible controls with a readable, rules-based risk evaluation.",
+    stack: ["React", "TypeScript", "Capacitor", "Supabase"],
+    githubUrl: "https://github.com/FransSadie/Halo",
+    detail: "Accessible controls and a transparent, rules-first evaluator. Local storage works without cloud configuration; native safety extensions remain future work.",
+  },
+  {
+    slug: "trace", name: "Trace", category: "Desktop tools", status: "Scaffold", accent: "teal",
+    description: "A desktop knowledge-base experiment that stores notes as Markdown and adds metadata and search through SQLite. It combines a web editor with a Tauri desktop scaffold.",
     stack: ["Tauri", "React", "Rust", "SQLite"],
     githubUrl: "https://github.com/FransSadie/TRACE",
-    status: "WIP",
-    year: "2026",
-    story:
-      "Trace is an experiment in keeping engineering notes portable and durable. Markdown remains the source of truth while the desktop layer adds navigation, indexing, and focused writing tools.",
-    lessons: [
-      "Plain files are a strong foundation for personal knowledge systems.",
-      "Desktop architecture benefits from a narrow vertical slice first.",
-      "The interface should stay out of the way of writing.",
-    ],
-    insight:
-      "The architecture keeps notes portable while preparing a focused desktop workflow for vaults, wiki links, backlinks, indexing, and daily writing.",
-  },
-  {
-    slug: "infinite-harmony-booking",
-    name: "Infinite Harmony Booking",
-    category: "Booking experience",
-    role: "UX design & frontend engineering",
-    description:
-      "A polished booking-request demo for a wellness business, including a public flow, confirmation screen, and browser-based admin dashboard.",
-    stack: ["Next.js", "TypeScript", "Tailwind", "Radix UI"],
-    githubUrl: "https://github.com/FransSadie/Booking-Demo1",
-    status: "Experimental",
-    year: "2026",
-    story:
-      "This demo translates a real wellness-business workflow into a clear booking request journey, from the public form to confirmation and a lightweight admin view.",
-    lessons: [
-      "Service businesses need precise expectations around confirmation.",
-      "Mobile clarity matters more than dashboard complexity.",
-      "A focused demo can expose the right production requirements early.",
-    ],
-    insight:
-      "The demo presents a realistic, mobile-friendly client journey while clearly separating booking requests from confirmed appointments.",
-  },
-  {
-    slug: "market-lens-price",
-    name: "Market Lens Price Model",
-    category: "Machine learning",
-    role: "Data & product engineering",
-    description:
-      "A price-only market-modeling pipeline with ingestion, feature engineering, LightGBM training, benchmark comparison, and an operator dashboard.",
-    stack: ["Python", "LightGBM", "FastAPI", "React"],
-    githubUrl: "https://github.com/FransSadie/Market-lens-price",
-    status: "Experimental",
-    year: "2026",
-    story:
-      "The price-model branch of Market Lens is a laboratory for feature engineering and honest model comparison, with every run recorded instead of presenting one result as final.",
-    lessons: [
-      "Benchmarks matter more than impressive-looking isolated metrics.",
-      "Model history makes experimentation accountable.",
-      "Operational tooling is part of the machine-learning product.",
-    ],
-    insight:
-      "The project tracks model versions, candidate trials, thresholds, feature importance, and strategy diagnostics instead of presenting a single accuracy score in isolation.",
+    detail: "A runnable web editor with a three-pane workspace and tested parsing helpers. The Rust desktop layer is scaffolded; its build is not verified in the repository README.",
   },
 ];
-
-export const featuredProjects = projects.filter((project) => project.featured);

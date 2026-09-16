@@ -1,36 +1,21 @@
-# Engineering Decisions
+﻿# Engineering Decisions
 
-Dates and original reasoning are unknown unless stated.
+## 2026-09-12: one content page
 
-## Static-first App Router
+The rebuild explicitly requires one-page navigation. Remove the old standalone section/project/note implementations and keep project build notes and MDX reading inline through native `details`. Permanent redirects preserve legacy incoming URLs. Trade-off: note bodies are part of the initial static HTML; there are only three current notes, but a much larger archive will need a deliberate payload review.
 
-- **Decision:** Use Next.js App Router pages with local content and statically generated dynamic paths.
-- **Evidence/reason:** The route implementation and build behavior are verifiable; the original motivation is unknown.
-- **Affected areas:** `app/`, `data/`, `content/notes/`, `lib/notes.ts`.
-- **Trade-off:** Simple deployment and no runtime data service, but content updates require a rebuild.
+## Data-driven physical media
 
-## Repository-backed content
+Use one Server Component, `FloppyDisk`, for all technologies. Typed skill collections carry names, categories, source evidence, optional serials, and optional accent overrides. Named collections use aligned rows with descriptions and a four-disk preview, with native expansion for additional skills. This keeps disk sizes consistent and avoids a giant ungrouped wall, a client-side filtering library, or one component per technology.
 
-- **Decision:** Keep structured portfolio content in TypeScript and notes in MDX.
-- **Evidence/reason:** Verified in `data/`, `content/notes/`, and `lib/notes.ts`; original rationale is unknown.
-- **Trade-off:** Content is versioned and typed, but non-developers have no CMS editing flow.
+## Evidence before breadth
 
-## Server-first presentation
+Use a dated public GitHub audit to select personal projects and substantiate skills. Omit the business-specific booking demo and an overlapping older Market Lens experiment. On 2026-09-16, reconcile skills and biography against the supplied resume. Prefer relevant breadth over copying every skill, preserve the resume's basic Azure Pipelines qualifier, and omit climbing coaching. The separate Experience & Education block was removed following user feedback; keep the curated skills and climbing hobby. Source references stay beside the skill data so future edits can be reviewed.
 
-- **Decision:** Keep content server-rendered and isolate active-section tracking to one navigation Client Component.
-- **Reason:** Preserve fast static rendering while making one-page navigation clear.
-- **Trade-off:** A small hydration cost for active navigation, with no scroll listener or animation library.
+## Preserve the hero, reduce continuous work
 
-## One-page primary journey
+Keep the horizon, two fonts, typography geometry, overlays, and ground grid. Fix the moving image at one scale and animate a small translation. Pause ambient motion offscreen and when hidden. Remove the full-viewport fixed SVG turbulence overlay and whole-section scroll-linked reveal effects; use short one-time heading entrances instead. Headless profiling did not reproduce the reported device-specific stutter, so no single root cause or universal 60fps guarantee is claimed.
 
-- **Decision:** Make homepage anchor sections the primary portfolio experience while retaining detail routes for deeper reading.
-- **Reason:** The September 2026 direction explicitly prioritizes a continuous one-page journey.
-- **Affected areas:** Homepage, header navigation, project and note links.
-- **Trade-off:** Fast scanning on one page, with a longer initial document and duplicated summaries on detail routes.
+## Progressive enhancement and existing deployment
 
-## Restrained retro identity
-
-- **Decision:** Express the retro-futurist identity through typography, a small palette, physical-artifact section compositions, two supplied images, and one generated cinematic horizon rather than a generic card system or heavy interactive effects.
-- **Reason:** The September 2026 redesign prioritizes speed, clarity, and a more mature presentation.
-- **Affected areas:** Global styles, layout, navigation, hero, cards, and content routes.
-- **Trade-off:** Less spectacle in exchange for better readability and substantially lower rendering complexity.
+Use semantic anchors, native disclosures, two small client boundaries, and CSS transform/opacity motion. No frame loops, scroll listeners, decorative React hydration, or new runtime dependencies. Preserve Next.js, npm, and the repository's existing Vercel deployment arrangement; the frontend rebuild does not require a hosting-provider migration.
