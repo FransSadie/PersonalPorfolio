@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useEffect, useRef, useState } from "react";
 
@@ -8,7 +8,6 @@ const links = [
   { id: "projects", label: "Projects" },
   { id: "skills", label: "Skills" },
   { id: "outside", label: "Outside tech" },
-  { id: "notes", label: "Notes" },
   { id: "contact", label: "Contact" },
 ];
 
@@ -52,9 +51,9 @@ export function SiteNavigation() {
     document.getElementById(id)?.focus({ preventScroll: true });
   }
 
-  const items = links.map((link) => (
+  const items = links.map((link, index) => (
     <a key={link.id} href={`#${link.id}`} aria-current={active === link.id ? "location" : undefined} onClick={() => selectSection(link.id)} className="nav-link">
-      {link.label}
+      <span className="nav-index" aria-hidden="true">{String(index + 1).padStart(2, "0")}</span><span className="nav-label">{link.label}</span>
     </a>
   ));
 

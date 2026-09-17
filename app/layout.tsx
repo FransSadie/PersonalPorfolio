@@ -1,4 +1,4 @@
-﻿import type { Metadata } from "next";
+import type { Metadata } from "next";
 import { Bebas_Neue, Space_Grotesk } from "next/font/google";
 import { Footer } from "@/components/footer";
 import { SiteHeader } from "@/components/site-header";
@@ -10,7 +10,7 @@ const bebasNeue = Bebas_Neue({ variable: "--font-bebas-neue", subsets: ["latin"]
 export const metadata: Metadata = {
   metadataBase: new URL("https://personalwebsite-psi-sepia.vercel.app"),
   title: "Frans Sadie | Software Engineer",
-  description: "The personal corner of Frans Sadie: software engineering, public projects, a collection of tools, and notes from the workbench.",
+  description: "The personal corner of Frans Sadie: software engineering, public projects, a collection of tools, and interests beyond the screen.",
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {

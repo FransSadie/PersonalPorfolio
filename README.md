@@ -1,6 +1,6 @@
 # Frans Portfolio
 
-A one-page Next.js, TypeScript, Tailwind CSS, and MDX portfolio with a preserved cinematic hero and a retro-computing visual system.
+A one-page Next.js, TypeScript, and Tailwind CSS portfolio with a preserved cinematic hero and a retro-computing visual system.
 
 ## Run locally
 
@@ -16,16 +16,16 @@ Open `http://localhost:3000`.
 - Projects: `data/projects.ts`
 - Passions: `data/passions.ts`
 - Profile and contact details: `data/profile.ts`
-- Notes: `content/notes/*.mdx`
+- Archived notes (not displayed): `content/notes/*.mdx`
 - Skills: `data/skills.ts`. Add evidence-backed entries to a collection; every technology uses `components/floppy-disk.tsx`. Do not create technology-specific components.
 
-Notes and project build notes open inline. Skill collections use native disclosures to keep the curated inventory organized. About contains a short biography; Outside Tech includes climbing. See `docs/ai-context/CONTENT_EVIDENCE.md` for the public GitHub audit and resume reconciliation.
+Project build notes open inline. The Notes section has been removed. Skill collections use native disclosures to keep the curated inventory organized. About contains a short biography; Outside Tech includes climbing. See `docs/ai-context/CONTENT_EVIDENCE.md` for the public GitHub audit and resume reconciliation.
 
 ## Structure
 
 - `app/` contains all routes.
 - `components/` contains reusable UI primitives and layout pieces.
-- `lib/notes.ts` loads and renders local MDX notes.
+- `lib/notes.ts` is retained with the unused notes archive.
 - `types/content.ts` defines the editable content model.
 - `app/globals.css` centralizes design tokens, responsive layouts, and motion.
 - `scripts/profile-scroll.mjs` optionally profiles a local production site through an existing QA browser's CDP websocket; see `docs/ai-context/PERFORMANCE.md`.

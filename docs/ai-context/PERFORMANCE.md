@@ -59,3 +59,32 @@ Production build and lint passed. Browser layout checks passed at 320, 390, 768,
 ## Resume content update: 2026-09-16
 
 Build, TypeScript, lint, and diff whitespace checks passed after resume curation. Browser checks found 43 unique skills in seven collections, three resume highlights, and five hobby cards. All five hobby images loaded; no browser errors or framework error overlay were detected. Expanded collection bounds passed at 320, 390, 768, 1024, and 1440px with normal and 200% root text size. Keyboard Enter expanded DevOps to reveal all nine entries. Desktop and mobile screenshots were inspected for the experience block and climbing card. The original hero asset remains outside the gradient wrapper. This content/layout update adds no client code; scroll performance was not remeasured.
+
+## Rollback and targeted polish, 2026-09-17
+
+Restored commit `5845ead` exactly before editing and visually checked the restored hero. The rejected working diff was saved outside the repository as `portfolio-rejected-refinement.patch`. Kept the original imagery, text, project order, About panel, and skill inventory. Changes are limited to hero positioning/static framing, segmented navigation, staged section entrances, and tactile details.
+
+Same-session headless Chromium, 1440x900, four alternating 900px gestures, 4x CPU throttling:
+
+| Variant | p95 frame gap | Gaps >34ms | Long tasks | Paint count / ms | Style recalculation ms |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| Restored baseline | 7.1ms | 0 | 0 | 29 / 26.15 | 161.67 |
+| Restored with drift disabled | 7.1ms | 0 | 0 | 24 / 19.19 | 24.36 |
+| Initial targeted polish | 13.9ms | 1 | 0 | 228 / 144.90 | 117.80 |
+| Final, nav color transition removed | 7.1ms | 0 | 0 | 36 / 33.69 | 78.00 |
+
+Removing the navigation background-color transition resolved the measured frame-gap regression; temporary layer promotion alone did not. Final reveals retain visible 28px motion, 80ms staging, and 520-650ms durations. The hero's continuous drift was removed without changing its image or overlays. Device-specific stutter was not reproduced; these results do not guarantee physical-phone performance.
+
+Build, TypeScript, lint, and responsive bounds passed (320-1440px, normal and 200% root text, expanded skills). Restored/final desktop hero and mobile About were visually inspected. Mobile section selection transfers focus and closes the menu; keyboard skill expansion passes. All 43 skills remain. No editable wrappers or browser errors were found, and body selection remains automatic. Reduced-motion emulation produces zero running animations and immediate scrolling. No new dependencies, routes, or deployment changes. Raw artifacts use `portfolio-restored-*` and `portfolio-targeted-*` in the user's temporary directory.
+
+## Notes removal and additional animation
+
+Build, lint, responsive bounds (320-1440px at 100% and 200% root text size), and reduced-motion checks passed. All 43 skills remain. Notes is absent from the page and navigation; `/notes` and `/notes/test` return 308 redirects to `/`. No browser errors were reported. Mobile Contact was visually checked after removing the intervening Notes section.
+
+A full-page downward scroll through the new individual-group reveals at 4x CPU throttling recorded a 7.2ms p95 frame gap, two gaps over 34ms, and zero long tasks. Paint: 141 events / 183.11ms; raster: 252 / 18.20ms. This longer traversal is not directly comparable with four-gesture hero recordings. Physical-phone performance remains unverified. Reduced motion produced zero running animations and automatic/immediate scrolling. Traces and screenshot use the `portfolio-no-notes-` prefix in the temporary directory.
+
+## Interaction pass, 2026-09-17
+
+Build, TypeScript, lint, and diff whitespace checks passed. Browser verification confirmed project hover transforms, keyboard Enter skill expansion, 43 disks, and no console errors. Settled layout bounds passed at 320/390/768/1024/1440px with 100% and 200% root text size (motion disabled during geometry measurement). Reduced-motion emulation, after allowing the media change to settle, reports zero running animations and immediate scrolling. Desktop hero and mobile skills screenshots were inspected.
+
+Full-page downward scrolling in headless Chromium at 4x CPU recorded 13.9ms p95 frame gap, three gaps over 34ms, zero long tasks, 251 paints / 292.92ms, and 1019.86ms style recalculation. The added staggered child motion and progress indicator increase rendering work compared with the previous 7.2ms run; this remains a synthetic check, not physical-device validation. Raw result: portfolio-interactions-profile.json in the user temporary directory.

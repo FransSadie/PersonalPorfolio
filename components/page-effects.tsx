@@ -1,48 +1,78 @@
-"use client";
+﻿"use client";
 
 import { useEffect } from "react";
 
-/** Small progressive enhancement: no React state, scroll listeners, or frame loops. */
+/** Event-driven motion; content stays visible without JavaScript. */
 export function PageEffects() {
   useEffect(() => {
-    const hero = document.getElementById("home");
-    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-    let heroVisible = false;
-    const updateMotion = () => {
-      hero?.classList.toggle("is-ambient", heroVisible && !document.hidden && !reducedMotion.matches);
+    const preference = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const ambient = new Set<Element>();
+    const updateAmbient = () => {
+      ambient.forEach((element) => element.classList.toggle("ambient-on", !preference.matches && !document.hidden));
     };
-    const visibility = new IntersectionObserver(([entry]) => { heroVisible = entry.isIntersecting; updateMotion(); });
-    if (hero) visibility.observe(hero);
-    document.addEventListener("visibilitychange", updateMotion);
-    reducedMotion.addEventListener("change", updateMotion);
-
-    const reveal = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (!entry.isIntersecting) return;
-        entry.target.classList.add("is-revealed");
-        reveal.unobserve(entry.target);
+    const ambientObserver = new IntersectionObserver((entries) => {
+      entries.forEach(({ target, isIntersecting }) => {
+        if (isIntersecting) ambient.add(target);
+        else { ambient.delete(target); target.classList.remove("ambient-on"); }
       });
-    }, { threshold: 0.15 });
-    if (!reducedMotion.matches) document.querySelectorAll("[data-reveal]").forEach((element) => reveal.observe(element));
-
-    const openNote = () => {
-      const fragment = window.location.hash.slice(1);
-      if (!fragment.startsWith("note-")) return;
-      const note = document.getElementById(fragment);
-      if (note instanceof HTMLDetailsElement) {
-        note.open = true;
-        note.scrollIntoView({ behavior: "instant", block: "start" });
+      updateAmbient();
+    });
+    document.querySelectorAll("#home, #contact").forEach((element) => ambientObserver.observe(element));
+    const targets = document.querySelectorAll(".section-header, .profile-sheet, .project-media, .skill-collection, .interest-card, .contact-inner");
+    const pending = new Set<Element>();
+    const seen = new WeakSet<Element>();
+    const active = new Map<Element, ReturnType<typeof setTimeout>>();
+    const start = () => {
+      if (preference.matches || document.hidden) return;
+      for (const element of pending) {
+        if (active.size >= 2) break;
+        pending.delete(element);
+        seen.add(element);
+        observer.unobserve(element);
+        element.classList.add("motion-enter");
+        active.set(element, setTimeout(() => {
+          element.classList.remove("motion-enter");
+          active.delete(element);
+          start();
+        }, 1000));
       }
     };
-    openNote();
-    window.addEventListener("hashchange", openNote);
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(({ target, isIntersecting }) => {
+        if (isIntersecting) pending.add(target);
+        else pending.delete(target);
+      });
+      start();
+    }, { rootMargin: "0px 0px -8% 0px", threshold: 0 });
+    const clear = () => {
+      observer.disconnect();
+      pending.clear();
+      active.forEach((timer, element) => {
+        clearTimeout(timer);
+        element.classList.remove("motion-enter");
+      });
+      active.clear();
+    };
+    const sync = () => {
+      if (preference.matches) clear();
+      else {
+        targets.forEach((element) => { if (!seen.has(element)) observer.observe(element); });
+        start();
+      }
+    };
+    sync();
+    preference.addEventListener("change", updateAmbient);
+    document.addEventListener("visibilitychange", updateAmbient);
+    preference.addEventListener("change", sync);
+    document.addEventListener("visibilitychange", start);
     return () => {
-      visibility.disconnect();
-      reveal.disconnect();
-      document.removeEventListener("visibilitychange", updateMotion);
-      reducedMotion.removeEventListener("change", updateMotion);
-      window.removeEventListener("hashchange", openNote);
-      hero?.classList.remove("is-ambient");
+      clear();
+      ambientObserver.disconnect();
+      ambient.forEach((element) => element.classList.remove("ambient-on"));
+      preference.removeEventListener("change", updateAmbient);
+      document.removeEventListener("visibilitychange", updateAmbient);
+      preference.removeEventListener("change", sync);
+      document.removeEventListener("visibilitychange", start);
     };
   }, []);
   return null;

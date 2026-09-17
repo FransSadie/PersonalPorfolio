@@ -38,7 +38,7 @@ const sources = {
 
 // GitHub audited 2026-09-12; curated against the supplied resume on 2026-09-16.
 // Serials are collection references, never versions or proficiency scores.
-export const skillCollections: readonly SkillCollection[] = [
+const collections: readonly SkillCollection[] = [
   {
     id: "languages", description: "The foundations for application code, queries, and the web.", name: "Languages", accent: "coral",
     skills: [
@@ -118,5 +118,11 @@ export const skillCollections: readonly SkillCollection[] = [
     ],
   },
 ];
+
+// Display references only, not versions or proficiency ratings.
+export const skillCollections: readonly SkillCollection[] = collections.map((collection) => ({
+  ...collection,
+  skills: collection.skills.map((skill, index) => ({ ...skill, serial: skill.serial ?? `${collection.id.slice(0, 4).toUpperCase()}-${String(index + 1).padStart(2, "0")}` })),
+}));
 
 export const skillCount = skillCollections.reduce((total, group) => total + group.skills.length, 0);

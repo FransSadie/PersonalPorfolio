@@ -1,4 +1,4 @@
-﻿# Engineering Decisions
+# Engineering Decisions
 
 ## 2026-09-12: one content page
 
@@ -19,3 +19,15 @@ Keep the horizon, two fonts, typography geometry, overlays, and ground grid. Fix
 ## Progressive enhancement and existing deployment
 
 Use semantic anchors, native disclosures, two small client boundaries, and CSS transform/opacity motion. No frame loops, scroll listeners, decorative React hydration, or new runtime dependencies. Preserve Next.js, npm, and the repository's existing Vercel deployment arrangement; the frontend rebuild does not require a hosting-provider migration.
+
+## 2026-09-17: exact rollback followed by targeted polish
+
+Restore `5845ead` rather than approximating the rejected refinement. Keep the original hero and cream About layout. Use segmented numbered navigation, limited staged section entrances, and stronger media hover feedback. A drift-disabled profiling comparison substantially reduced style recalculation, so retain static hero framing. Animated navigation background colors introduced repeat paint work; remove that transition while retaining instantaneous active colors and a transform-based underline. Preserve selection and anchor focus: no site-created editable caret was found.
+
+## Notes removal and broader motion
+
+Remove Notes from the homepage, metadata, navigation, and fragment behavior; redirect old notes paths to the homepage. Keep note source files archived rather than deleting the writing. Extend one-time motion to every project, skill shelf, and hobby image, with at most two groups active. Add brief hero-text and skill-expansion entrances while retaining static hero imagery. On small screens remove sideways travel and rotation to prevent transient overflow. Respect live reduced-motion changes and release temporary layers after one second.
+
+## Interactions beyond scrolling
+
+Keep the established layout, content, and hero artwork. Use CSS for hover/focus/press/disclosure motion, with observer-gated small ambient indicators. Use native CSS scroll timelines only for the thin progress indicator, with omission as the fallback. Keep Notes removed and avoid animation libraries or continuous JavaScript work.
